@@ -50,7 +50,10 @@ class UserController extends Controller
                     'res'=>200,
                     'msg'=>'登陆成功',
                     'api_id'=>$res->api_id,
-                    'token'=>$token
+                    'data'=>[
+                        'token'=>$token,
+                    ]
+
                 ];
                 $key="lumen_login_token";
                 Redis::set($key,$token);
