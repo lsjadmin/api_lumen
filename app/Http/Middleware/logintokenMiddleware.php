@@ -22,7 +22,7 @@ class logintokenMiddleware
         if(empty($token)||empty($api_id)){
             die('参数不同');
         }
-        $key="lumen_login_token. $api_id";
+        $key="lumen_login_token.$api_id";
         $redis_token=Redis::get($key);
         echo $redis_token;
         return $next($request);
