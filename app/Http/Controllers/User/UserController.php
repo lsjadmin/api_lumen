@@ -66,7 +66,32 @@ class UserController extends Controller
             return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }
     }
-    //个人中心
+    //个人中心(获得用户信息)
+    public function user(){
+        $id=$_GET;
+        //dd($id);
+        $where=[
+            'api_id'=>$id
+        ];
+        $res=DB::table('p_api')->where($where)->first();
+       // dd($res);
+        if($res){
+            $arr=[
+                'res'=>200,
+                'msg'=>'获得用户信息成功',
+                'name'=>$res->name,
+                'email'=>$res->email
+            ];
+            return json_encode($arr,JSON_UNESCAPED_UNICODE);
+        }else{
+            $arr=[
+                'res'=>40000,
+                'msg'=>'失败',
+
+            ];
+            return json_encode($arr,JSON_UNESCAPED_UNICODE);
+        }
+    }
 
 }
 ?>
