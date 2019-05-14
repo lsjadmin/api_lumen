@@ -30,9 +30,9 @@ $router->get('/', function () use ($router) {
 //hbui
 $router->post('/reg','User\UserController@reg');  //接受注册信息
 $router->post('/login','User\UserController@login');  //接受登陆信息
-//$router->get('/user','User\UserController@user');  //个人中心
+$router->get('/user','User\UserController@user');  //个人中心
 
-$router->group(['middleware' => 'logintoken'], function () use ($router) {
- $router->get('/user',['uses'=>'User\UserController@user']);
-});  //测试中间件(路由中间件)
+//$router->group(['middleware' => 'logintoken'], function () use ($router) {
+// $router->get('/user',['uses'=>'User\UserController@user']);
+//});  //测试中间件(路由中间件)
 
