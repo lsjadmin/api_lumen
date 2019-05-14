@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Illuminate\Support\Facades\Redis;
 class logintokenMiddleware
 {
     /**
@@ -19,12 +19,12 @@ class logintokenMiddleware
         echo $token;
         $api_id=$_GET['api_id'];
         echo $api_id;
-//        if(empty($token)||empty($api_id)){
-//            die('参数不同');
-//        }
-//        $key="lumen_login_token. $api_id";
-//        $redis_token=Redis::get($key);
-//        echo $redis_token;
+        if(empty($token)||empty($api_id)){
+            die('参数不同');
+        }
+        $key="lumen_login_token. $api_id";
+        $redis_token=Redis::get($key);
+        echo $redis_token;
         return $next($request);
     }
 }
