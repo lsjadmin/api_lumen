@@ -57,13 +57,13 @@ $app->singleton(
 |
 */
 //
-$app->middleware([
-    App\Http\Middleware\logintokenMiddleware::class
-]);
+//$app->middleware([
+//    App\Http\Middleware\logintokenMiddleware::class
+//]);
 
-// $app->routeMiddleware([
-//     'logintoken' =>  App\Http\Middleware\logintokenMiddleware::class,
-// ]);
+ $app->routeMiddleware([
+     'logintoken' =>  App\Http\Middleware\logintokenMiddleware::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------

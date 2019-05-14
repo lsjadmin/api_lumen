@@ -39,7 +39,7 @@ class logintokenMiddleware
                    'res'=>50002,
                    'msg'=>'token不对请重新登陆'
                ];
-               echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+              die(json_encode($arr,JSON_UNESCAPED_UNICODE));
            }
         return $next($request);
     }
