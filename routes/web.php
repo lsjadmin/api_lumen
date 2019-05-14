@@ -27,3 +27,6 @@ $router->get('/', function () use ($router) {
  $router->get('/redis','Test\TestController@redis');  //测试redis
  $router->get('/script','Test\TestController@script');  //测试script 路径解决跨域
 
+//hbui
+$router->post('/reg','User\UserController@reg');  //接受注册信息
+
