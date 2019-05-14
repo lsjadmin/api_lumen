@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Method:OPTIONS,GET,POST');
-header('Access-Control-Allow-Headers:x-requested-with');
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
