@@ -27,7 +27,11 @@ class UserController extends Controller
             ];
             return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }else{
-            echo "no";
+            $arr=[
+                'res'=>40001,
+                'msg'=>'注册失败'
+            ];
+            return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }
     }
 }
