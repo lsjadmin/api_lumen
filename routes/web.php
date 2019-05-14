@@ -29,4 +29,5 @@ $router->get('/', function () use ($router) {
 
 //hbui
 $router->post('/reg','User\UserController@reg');  //接受注册信息
+$router->post('/login','User\UserController@login');  //接受登陆信息
 
