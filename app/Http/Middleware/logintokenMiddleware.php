@@ -29,14 +29,14 @@ class logintokenMiddleware
            if($redis_token){
                if($redis_token!==$token){
                    $arr=[
-                       'errno'=>50001,
+                       'res'=>50001,
                        'msg'=>'token一致 登陆成功'
                    ];
                    die(json_encode($arr,JSON_UNESCAPED_UNICODE));
                }
            }else{
                $arr=[
-                   'errno'=>50002,
+                   'res'=>50002,
                    'msg'=>'token不对请重新登陆'
                ];
                echo json_encode($arr,JSON_UNESCAPED_UNICODE);
