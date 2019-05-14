@@ -61,9 +61,9 @@ $app->singleton(
 //    App\Http\Middleware\CrossHttp::class
 //]);
 
-// $app->routeMiddleware([
-//     'corsMiddleware' =>  App\Http\Middleware\CorsMiddleware::class,
-// ]);
+ $app->routeMiddleware([
+     'logintoken' =>  App\Http\Middleware\logintokenMiddleware::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
