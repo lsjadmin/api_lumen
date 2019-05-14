@@ -26,13 +26,13 @@ class logintokenMiddleware
         $key="lumen_login_token.$api_id";
         $redis_token=Redis::get($key);
         //echo $redis_token;
-//        if($token==$redis_token){
-//            $arr=[
-//                'res'=>200,
-//                'msg'=>'token 一致 登陆成功'
-//            ];
-//            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-//        }
+        if($token==$redis_token){
+            $arr=[
+                'res'=>200,
+                'msg'=>'token 一致 登陆成功'
+            ];
+            die(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
         return $next($request);
     }
 }
