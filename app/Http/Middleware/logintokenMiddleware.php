@@ -27,12 +27,12 @@ class logintokenMiddleware
         $redis_token=Redis::get($key);
         //echo $redis_token;
            if($redis_token){
-               if($redis_token==$token){
+               if($redis_token!==$token){
                    $arr=[
                        'errno'=>50001,
-                       'msg'=>'token不对请重新登陆a'
+                       'msg'=>'token一致 登陆成功'
                    ];
-                   echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+                   die(json_encode($arr,JSON_UNESCAPED_UNICODE));
                }
            }else{
                $arr=[
