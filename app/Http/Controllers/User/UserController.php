@@ -77,7 +77,7 @@ class UserController extends Controller
     }
     //个人中心(获得用户信息)
     public function user(){
-        $id=$_GET;
+        $id=$_GET['api_id'];
         //dd($id);
         $where=[
             'api_id'=>$id
