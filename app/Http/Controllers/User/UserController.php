@@ -45,11 +45,17 @@ class UserController extends Controller
         $res=DB::table('p_api')->where($where)->first();
         if($res){
             if($pass==$res->pass){
+                $token=$this->postlogintoken($res->api_id);
                 $arr=[
                     'res'=>200,
                     'msg'=>'登陆成功',
-                    'api_id'=>$res->api_id
+                    'api_id'=>$res->api_id,
+                    'token'=>$token
                 ];
+                $key="lumen_login_token";
+                Redis::set($key,$token);
+                Redis::expire($key,604800);
+                //dd($token);
                 return json_encode($arr,JSON_UNESCAPED_UNICODE);
             }else{
                 $arr=[
@@ -91,6 +97,12 @@ class UserController extends Controller
             ];
             return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }
+    }
+    //获得token
+    public function postlogintoken($id){
+        $str=Str::random(10);
+        $token=substr(sha1(time().$id.$str),5,15);
+        return $token;
     }
 
 }
