@@ -21,7 +21,11 @@ class UserController extends Controller
         ];
         $res=DB::table('p_api')->insert($info);
         if($res){
-            echo "ok";
+            $arr=[
+                'res'=>200,
+                'msg'=>'注册成功'
+            ];
+            return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }else{
             echo "no";
         }
