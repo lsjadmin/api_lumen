@@ -12,8 +12,19 @@ class UserController extends Controller
 {
     //接受注册信息
     public function reg(){
-        $data=$_POST;
-        dd($data);
+        $a=$_POST;
+        //dd($a);
+        $info=[
+            'name'=>$a['username'],
+            'email'=>$a['useremail'],
+            'pass'=>$a['password']
+        ];
+        $res=DB::table('p_api')->insert($info);
+        if($res){
+            echo "ok";
+        }else{
+            echo "no";
+        }
     }
 }
 ?>
