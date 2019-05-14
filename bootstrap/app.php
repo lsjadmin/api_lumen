@@ -57,9 +57,9 @@ $app->singleton(
 |
 */
 //
-$app->middleware([
-    App\Http\Middleware\CrossHttp::class
-]);
+//$app->middleware([
+//    App\Http\Middleware\CrossHttp::class
+//]);
 
 // $app->routeMiddleware([
 //     'corsMiddleware' =>  App\Http\Middleware\CorsMiddleware::class,
