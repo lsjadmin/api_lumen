@@ -55,7 +55,7 @@ class UserController extends Controller
                     ]
 
                 ];
-                $key="lumen_login_token";
+                $key="lumen_login_token.$res->api_id";
                 Redis::set($key,$token);
                 Redis::expire($key,604800);
                 //dd($token);
