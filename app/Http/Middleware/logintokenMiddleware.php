@@ -28,15 +28,8 @@ class logintokenMiddleware
         //echo $redis_token;
         if($token==$redis_token){
             $arr=[
-                'res'=>40001,
+                'res'=>200,
                 'msg'=>'token 一致 登陆成功'
-            ];
-            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-        }else{
-            $arr=[
-                'res'=>40002,
-                'msg'=>'token 不一致 登陆失败'
-
             ];
             return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }
