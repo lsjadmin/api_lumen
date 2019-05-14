@@ -17,7 +17,7 @@ class CrossHttp
     {
         if($request->getMethod() == "OPTIONS") {
             $allowOrigin = [
-                'http://192.168.1.47',
+                'http://192.168.40.129',
                 'http://localhost',
             ];
             $Origin = $request->header("Origin");
