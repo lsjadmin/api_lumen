@@ -47,7 +47,8 @@ class UserController extends Controller
             if($pass==$res->pass){
                 $arr=[
                     'res'=>200,
-                    'msg'=>'登陆成功'
+                    'msg'=>'登陆成功',
+                    'api_id'=>$res->api_id
                 ];
                 return json_encode($arr,JSON_UNESCAPED_UNICODE);
             }else{
@@ -65,5 +66,7 @@ class UserController extends Controller
             return json_encode($arr,JSON_UNESCAPED_UNICODE);
         }
     }
+    //个人中心
+
 }
 ?>
