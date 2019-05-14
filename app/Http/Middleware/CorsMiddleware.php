@@ -15,6 +15,11 @@ class CorsMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if($request->isMethod('OPTIONS')){
+            $response=response('');
+        }else{
+            $response=$next($request);
+        }
+        return $response;
     }
 }

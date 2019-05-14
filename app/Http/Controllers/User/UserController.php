@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\User;
-header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Method:OPTIONS,GET,POST');
+header('Access-Control-Allow-Headers:x-requested-with');
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -107,6 +109,9 @@ class UserController extends Controller
         $token=substr(sha1(time().$id.$str),5,15);
         return $token;
     }
-
+    //测试中间件
+    public function aa(){
+        echo "bb";
+    }
 }
 ?>
