@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+header('Access-Control-Allow-Origin:*');
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;

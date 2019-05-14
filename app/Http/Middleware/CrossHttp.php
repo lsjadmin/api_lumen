@@ -15,6 +15,6 @@ class CrossHttp
      */
     public function handle($request, Closure $next)
     {
-        
+
     }
 }
