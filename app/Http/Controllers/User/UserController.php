@@ -13,7 +13,7 @@ class UserController extends Controller
     //接受注册信息
     public function reg(){
         $a=$_POST;
-        //dd($a);
+        dd($a);
         $info=[
             'name'=>$a['username'],
             'email'=>$a['useremail'],
