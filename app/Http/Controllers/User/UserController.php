@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\User;
-header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods:OPTIONS,GET,PSOT');
 header('Access-Control-Allow-Headers:x-requested-with');
 use Illuminate\Http\Request;
@@ -13,9 +12,9 @@ use Illuminate\Support\Facades\Redis;
 class UserController extends Controller
 {
     //接受注册信息
-    public function reg(){
-        $a=$_POST;
-//        dd($a);
+    public function reg(Request $request){
+        $a=$request->input();
+        //echo $a;die;
         $info=[
             'name'=>$a['username'],
             'email'=>$a['useremail'],
@@ -37,8 +36,8 @@ class UserController extends Controller
         }
     }
     //接受登陆信息
-    public function login(){
-        $arr=$_POST;
+    public function login(Request $request){
+        $arr=$request->input();
         //dd($arr);
         $pass=$arr['password'];
         $where=[
@@ -109,8 +108,8 @@ class UserController extends Controller
         $token=substr(sha1(time().$id.$str),5,15);
         return $token;
     }
-    //测试中间件
-    public function aa(){
+    //原生的jq
+    public function jq(){
         echo "bb";
     }
 }
