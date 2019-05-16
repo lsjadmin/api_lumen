@@ -20,97 +20,73 @@ class UserController extends Controller
             'email'=>$a['useremail'],
             'pass'=>$a['password']
         ];
-        $res=DB::table('p_api')->insert($info);
-        if($res){
-            $arr=[
-                'res'=>200,
-                'msg'=>'注册成功'
-            ];
-            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-        }else{
-            $arr=[
-                'res'=>40001,
-                'msg'=>'注册失败'
-            ];
-            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-        }
+       // $url="http://passport.1809a.com/user/reg";
+        $url="http://passport.lianshijiea.com/user/reg";
+        //初始化curl
+        $ch=curl_init();
+        //通过 curl_setopt() 设置需要的全部选项
+        curl_setopt($ch, CURLOPT_URL,$url);
+        //禁止浏览器输出 ，使用变量接收
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST,1);
+        //把数据传输过去
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$info);
+        //执行会话
+        $res=curl_exec($ch);
+        //结束一个会话
+        curl_close($ch);
+        echo $res;
+
     }
     //接受登陆信息
     public function login(Request $request){
         $arr=$request->input();
         //dd($arr);
-        $pass=$arr['password'];
-        $where=[
-            'email'=>$arr['useremail']
-        ];
-        $res=DB::table('p_api')->where($where)->first();
-        if($res){
-            if($pass==$res->pass){
-                $token=$this->postlogintoken($res->api_id);
-                $arr=[
-                    'res'=>200,
-                    'msg'=>'登陆成功',
-                    'api_id'=>$res->api_id,
-                    'data'=>[
-                        'token'=>$token,
-                    ]
+       // $url="http://passport.1809a.com/user/login";
+        $url="http://passport.lianshijiea.com/user/login";
+        $res=$this->postcurl($url,$arr);
+       echo $res;
 
-                ];
-                $key="lumen_login_token.$res->api_id";
-                Redis::set($key,$token);
-                Redis::expire($key,604800);
-                //dd($token);
-                return json_encode($arr,JSON_UNESCAPED_UNICODE);
-            }else{
-                $arr=[
-                    'res'=>50001,
-                    'msg'=>'登陆失败'
-                ];
-                return json_encode($arr,JSON_UNESCAPED_UNICODE);
-            }
-        }else{
-            $arr=[
-                'res'=>50000,
-                'msg'=>'没有这个用户'
-            ];
-            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-        }
     }
     //个人中心(获得用户信息)
     public function user(){
         $id=$_GET['api_id'];
-        //dd($id);
-        $where=[
-            'api_id'=>$id
-        ];
-        $res=DB::table('p_api')->where($where)->first();
-       // dd($res);
-        if($res){
-            $arr=[
-                'res'=>200,
-                'msg'=>'获得用户信息成功',
-                'name'=>$res->name,
-                'email'=>$res->email
-            ];
-            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-        }else{
-            $arr=[
-                'res'=>40000,
-                'msg'=>'失败',
 
-            ];
-            return json_encode($arr,JSON_UNESCAPED_UNICODE);
-        }
-    }
-    //获得token
-    public function postlogintoken($id){
-        $str=Str::random(10);
-        $token=substr(sha1(time().$id.$str),5,15);
-        return $token;
+        //$url="http://passport.1809a.com/user/user?id=$id";
+        $url="http://passport.lianshijiea.com/user/user?id=$id";
+        $ch=curl_init();
+        //通过 curl_setopt() 设置需要的全部选项
+        curl_setopt($ch, CURLOPT_URL,$url);
+        //禁止浏览器输出 ，使用变量接收
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //执行会话
+        $res=curl_exec($ch);
+
+        echo $res;
+
+        //dd($id);
+
     }
     //原生的jq
     public function jq(){
         echo "bb";
+    }
+    //curl方法
+    function postcurl($url,$info){
+        //初始化curl
+        $ch=curl_init();
+        //通过 curl_setopt() 设置需要的全部选项
+        curl_setopt($ch, CURLOPT_URL,$url);
+        //禁止浏览器输出 ，使用变量接收
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST,1);
+        //把数据传输过去
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$info);
+        //执行会话
+        $res=curl_exec($ch);
+        //结束一个会话
+        curl_close($ch);
+        return $res;
     }
 }
 ?>
