@@ -36,3 +36,10 @@ $router->group(['middleware' => 'logintoken'], function () use ($router) {
  $router->get('/user',['uses'=>'User\UserController@user']);
 });  //测试中间件(路由中间件)
 
+$router->get('/car','User\UserController@car');  //商品展示
+$router->get('/goodslist','User\UserController@goodslist');  //商品详情
+$router->get('/cara','User\UserController@cara');  //加入购物车
+$router->get('/carlist','User\UserController@carlist');  //购物车
+$router->get('/order','User\UserController@order');  //生成订单
+$router->get('/orderlist','User\UserController@orderlist');  //订单展示
+

@@ -88,5 +88,65 @@ class UserController extends Controller
         curl_close($ch);
         return $res;
     }
+    //curl get 方法
+    function getcurl($url){
+        $ch=curl_init();
+        //通过 curl_setopt() 设置需要的全部选项
+        curl_setopt($ch, CURLOPT_URL,$url);
+        //禁止浏览器输出 ，使用变量接收
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //执行会话
+        $res=curl_exec($ch);
+
+        return $res;
+    }
+    //商品展示
+    public function car(){
+        $res=DB::table('goods')->get();
+       // dd($arr);
+       echo  json_encode($res,JSON_UNESCAPED_UNICODE);
+    }
+    //商品详情
+    public function goodslist(){
+        $g_id=$_GET['g_id'];
+        //echo $g_id;
+        $url="http://passport.1809a.com/user/goodslist?id=$g_id";
+        $res=$this->getcurl($url);
+        echo $res;
+    }
+    //加入购物车
+    public function cara(){
+        $g_id=$_GET['g_id'];
+        $api_id=$_GET['api_id'];
+        $url="http://passport.1809a.com/user/cara?id=$g_id&api_id=$api_id";
+        $res=$this->getcurl($url);
+        echo $res;
+    }
+    //购物车展示
+    public function carlist(){
+        $u_id=$_GET['u_id'];
+        //echo $u_id;
+        $url="http://passport.1809a.com/user/carlist?u_id=$u_id";
+        $res=$this->getcurl($url);
+        echo $res;
+    }
+    //生成订单
+    public function order(){
+        $u_id=$_GET['u_id'];
+        $price=$_GET['price'];
+        $g_id=$_GET['g_id'];
+        //echo $u_id;
+        $url="http://passport.1809a.com/user/order?u_id=$u_id&price=$price&g_id=$g_id";
+        $res=$this->getcurl($url);
+        echo $res;
+    }
+    //订单展示
+    public function orderlist(){
+        $u_id=$_GET['u_id'];
+        $url="http://passport.1809a.com/user/orderlist?u_id=$u_id";
+        $res=$this->getcurl($url);
+        echo $res;
+    }
+
 }
 ?>

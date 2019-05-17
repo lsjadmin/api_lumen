@@ -30,7 +30,7 @@ class logintokenMiddleware
                if($redis_token!==$token){
                    $arr=[
                        'res'=>50001,
-                       'msg'=>'token一致 登陆成功'
+                       'msg'=>'token不一致 登陆不成功'
                    ];
                    die(json_encode($arr,JSON_UNESCAPED_UNICODE));
                }
