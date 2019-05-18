@@ -110,7 +110,7 @@ class UserController extends Controller
     public function goodslist(){
         $g_id=$_GET['g_id'];
         //echo $g_id;
-        $url="http://passport.1809a.com/user/goodslist?id=$g_id";
+        $url='http://'.env('APP_AA')."/user/goodslist?id=$g_id";
         $res=$this->getcurl($url);
         echo $res;
     }
@@ -118,15 +118,16 @@ class UserController extends Controller
     public function cara(){
         $g_id=$_GET['g_id'];
         $api_id=$_GET['api_id'];
-        $url="http://passport.1809a.com/user/cara?id=$g_id&api_id=$api_id";
+        $url='http://'.env('APP_AA')."/user/cara?id=$g_id&api_id=$api_id";
         $res=$this->getcurl($url);
         echo $res;
     }
     //购物车展示
     public function carlist(){
         $u_id=$_GET['u_id'];
-        //echo $u_id;
-        $url="http://passport.1809a.com/user/carlist?u_id=$u_id";
+       // echo $u_id;die;
+        $url='http://'.env('APP_AA')."/user/carlist?u_id=$u_id";
+        //echo $url;die;
         $res=$this->getcurl($url);
         echo $res;
     }
@@ -136,17 +137,20 @@ class UserController extends Controller
         $price=$_GET['price'];
         $g_id=$_GET['g_id'];
         //echo $u_id;
-        $url="http://passport.1809a.com/user/order?u_id=$u_id&price=$price&g_id=$g_id";
+        $url='http://'.env('APP_AA')."/user/order?u_id=$u_id&price=$price&g_id=$g_id";
         $res=$this->getcurl($url);
         echo $res;
     }
     //订单展示
     public function orderlist(){
         $u_id=$_GET['u_id'];
-        $url="http://passport.1809a.com/user/orderlist?u_id=$u_id";
+        //echo $u_id;die;
+        $url='http://'.env('APP_AA')."/user/orderlist?u_id=$u_id";
+        //echo $url;die;
         $res=$this->getcurl($url);
         echo $res;
     }
+
 
 }
 ?>
